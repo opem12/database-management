@@ -1,0 +1,32 @@
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "inventory_management";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Example query to insert a product into the database
+$name = "Example Product";
+$description = "This is an example product description.";
+$price = 19.99;
+$quantity = 100;
+
+$sql = "INSERT INTO products (name, description, price, quantity)
+        VALUES ('$name', '$description', $price, $quantity)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "New product created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+// Close connection
+$conn->close();
+?>
